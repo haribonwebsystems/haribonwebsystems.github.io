@@ -36,27 +36,40 @@
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 6%;  /* slightly reduced vertical padding for better logo fit */
+      padding: 1rem 6%;
       background: rgba(10,22,40,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(26,107,255,0.2);
     }
 
-    /* Logo image style */
+    /* Logo container: image + text side by side */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
     .logo-img {
       display: block;
-      height: 42px;          /* fixed height to fit nav */
+      height: 42px;
       width: auto;
-      border-radius: 4px;     /* optional subtle rounding */
+      border-radius: 4px;
       transition: transform 0.2s;
     }
     .logo-img:hover {
       transform: scale(1.02);
     }
-    /* keep original class for possible fallback, but we replace content */
-    .logo {
-      display: flex;
-      align-items: center;
+
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+    .logo-text span {
+      color: var(--blue-light);
     }
 
     .nav-links {
@@ -102,7 +115,6 @@
         radial-gradient(ellipse 40% 40% at 20% 80%, rgba(77,159,255,0.1) 0%, transparent 50%);
     }
 
-    /* Grid overlay */
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
@@ -574,7 +586,11 @@
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
-    .footer-brand .logo { font-size: 1.2rem; margin-bottom: 1rem; display: block; }
+    .footer-brand .logo-text { 
+      font-size: 1.2rem; 
+      margin-bottom: 1rem; 
+      display: inline-block; 
+    }
     .footer-brand p { font-size: 0.88rem; line-height: 1.7; font-weight: 300; max-width: 260px; }
 
     .footer-col h5 {
@@ -615,22 +631,22 @@
       .why-features { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
       nav .nav-links, nav .nav-cta { display: none; }
-      /* keep logo visible on mobile */
-      nav {
-        padding: 0.9rem 6%;
-      }
       .logo-img {
         height: 38px;
+      }
+      .logo-text {
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV (Logo added from imgbb) -->
+  <!-- NAV with logo image + "Haribon.WS" text beside it -->
   <nav>
-    <div class="logo">
+    <div class="logo-container">
       <img class="logo-img" src="https://i.ibb.co/3yCRGjMH/viber-image-2026-02-23-16-39-24-420.jpg" alt="Haribon Web Systems logo">
+      <span class="logo-text">Haribon<span>.</span>WS</span>
     </div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -829,8 +845,8 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
-        <!-- keep visual consistency, you could also place a small logo here but we reuse brand text -->
-        <span class="logo">Haribon<span>.</span>WS</span>
+        <!-- keep consistent branding: use same logo-text style in footer -->
+        <span class="logo-text">Haribon<span>.</span>WS</span>
         <p>Building powerful digital solutions for businesses across the Philippines and beyond. Your web, our expertise.</p>
       </div>
       <div class="footer-col">
