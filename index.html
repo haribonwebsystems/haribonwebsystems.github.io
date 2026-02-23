@@ -36,20 +36,28 @@
       position: fixed; top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 6%;
+      padding: 1rem 6%;  /* slightly reduced vertical padding for better logo fit */
       background: rgba(10,22,40,0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(26,107,255,0.2);
     }
 
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--white);
-      letter-spacing: -0.03em;
+    /* Logo image style */
+    .logo-img {
+      display: block;
+      height: 42px;          /* fixed height to fit nav */
+      width: auto;
+      border-radius: 4px;     /* optional subtle rounding */
+      transition: transform 0.2s;
     }
-    .logo span { color: var(--blue-light); }
+    .logo-img:hover {
+      transform: scale(1.02);
+    }
+    /* keep original class for possible fallback, but we replace content */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
     .nav-links {
       display: flex; gap: 2.5rem; list-style: none;
@@ -73,6 +81,7 @@
       font-size: 0.9rem;
       font-weight: 500;
       transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
     }
     .nav-cta:hover { background: var(--blue-light); transform: translateY(-1px); }
 
@@ -597,6 +606,7 @@
 
     .footer-bottom a { color: var(--blue-light); text-decoration: none; }
 
+    /* Responsive adjustments */
     @media (max-width: 900px) {
       .services-grid, .testi-grid { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
@@ -605,14 +615,23 @@
       .why-features { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
       nav .nav-links, nav .nav-cta { display: none; }
+      /* keep logo visible on mobile */
+      nav {
+        padding: 0.9rem 6%;
+      }
+      .logo-img {
+        height: 38px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV (Logo added from imgbb) -->
   <nav>
-    <div class="logo">Haribon<span>.</span>WS</div>
+    <div class="logo">
+      <img class="logo-img" src="https://i.ibb.co/3yCRGjMH/viber-image-2026-02-23-16-39-24-420.jpg" alt="Haribon Web Systems logo">
+    </div>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
@@ -810,6 +829,7 @@
   <footer>
     <div class="footer-top">
       <div class="footer-brand">
+        <!-- keep visual consistency, you could also place a small logo here but we reuse brand text -->
         <span class="logo">Haribon<span>.</span>WS</span>
         <p>Building powerful digital solutions for businesses across the Philippines and beyond. Your web, our expertise.</p>
       </div>
